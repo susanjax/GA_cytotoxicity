@@ -1,37 +1,44 @@
 import pandas as pd
 import prediction
 import crossing_and_mutation
-generation_number = 100
+generation_number = 50
 
-Generation1 = prediction.sort_compound(prediction.Viability_prediction())
+#input
+population_size = 200
+cross_over = 0.6
+
+
+Generation1 = prediction.Viability_prediction()
+#print('Generation1', prediction.sort_compound(Generation1))
 Generation2 = crossing_and_mutation.evolution(Generation1)
-loop = Generation2
+#print(Generation2)
+
+
 
 def new_generations(Gen):
     new = [Gen, prediction.Viability_prediction()]
     new_generation_input = pd.concat(new)
     sort_result = prediction.sort_compound(new_generation_input)
+    sort_result.reset_index()
     new_gen = crossing_and_mutation.evolution(sort_result)
     return new_gen
 
-#
-# def generations(loop_gen):
-#     future_generation = new_generations(loop_gen)
-#     return future_generation
+
+print('Generation1\n', prediction.sort_compound(Generation1), '\n Generation2 \n',Generation2, '\n New \n',new_generations(Generation2), )
 
 
 def final():
-
-    a = 2
-    old = new_generations(Generation2)
+    #Generation1 = prediction.Viability_prediction()
+    #Generation2 = crossing_and_mutation.evolution(Generation1)
+    Generation_next = Generation2
+    a = 3
     i = 0
-    while i < 0.9 and a < generation_number:
-        old = new_generations(old)
-        i = old.iloc[0][7]
-        print('generation_number:', a , 'fitness', i)
-        print(old)
-
+    while i < 0.8 and a < generation_number:
+        Generation_next = new_generations(Generation_next)
+        i = Generation_next.iloc[0][7]
+        print('generation_number:', a , 'fitness', i, '\n' )
+        print(Generation_next)
         a += 1
-    return old
+    return Generation_next
 
-print(final())
+print("Final result:", final())

@@ -1,34 +1,37 @@
 import cross
 import evolved_fitness
+import prediction
+import mutation
 import random
 import pandas as pd
-import prediction
-elite_population = 3
+
+elite_population = 5
 population_size = 100
-cross_over_frequency = 0.2
-Tournament_selection = 4
+#cross_over_frequency = 0.6
 df = prediction.Viability_prediction()
-sorted_pop = df.sort_values('fitness', ascending=False)
 column = ['normal_cell', 'cancer_cell', 'test', 'time (hr)', 'concentration (ug/ml)', 'Hydrodynamic diameter (nm)', 'Zeta potential (mV)', 'fitness']
 
 
 
-def evolution(sorted_population):
+def evolution(df_compound_list):
     dataframe = []
-    length = len(sorted_population) - 1
+    sorted_pop = df_compound_list.sort_values('fitness', ascending=False)
+    length = len(sorted_pop) - 1
     for i in range(elite_population):
-        dataframe.append(sorted_population.iloc[i].values.tolist())
+        dataframe.append(sorted_pop.iloc[i].values.tolist())
         #print('elite', dataframe)
         i += 1
     while i < population_size:
-        individual1 = sorted_population.iloc[i].values.tolist()
-        individual2 = sorted_population.iloc[random.randint(i, length)].values.tolist()
+        individual1 = sorted_pop.iloc[i].values.tolist()
+        individual2 = sorted_pop.iloc[random.randint(i, length)].values.tolist()
         cross_individual = cross.crossover_individuals(individual1, individual2)
-        fitness_prediction_of_cross_individual = evolved_fitness.evolved_cross(cross_individual)
+        #print('this is crossed individual', cross_individual)
+        mutate_individual = mutation.to_mutation(cross_individual)
+        fitness_prediction_of_cross_individual = evolved_fitness.evolved_compound(mutate_individual)
         dataframe.append(fitness_prediction_of_cross_individual)
         i += 1
         #print('cross;', dataframe)
     compound_List = pd.DataFrame(dataframe, columns=column)
     sorted = compound_List.sort_values('fitness', ascending=False)
     return sorted
-#print(evolution(sorted_pop))
+#print('out', evolution(df))
