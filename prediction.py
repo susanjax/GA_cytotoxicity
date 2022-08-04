@@ -39,7 +39,7 @@ def sort_compound(df):
     #dfff = dfff.reset_index()
     return dfff
 
-#print(Viability_prediction())
+print(list(Viability_prediction().loc[5]))
 
 #print('output:\n', sort_compound(Viability_prediction()))
 # here the printed values are cell line, cancer line, test, time, concentration, Hydrodynamic diameter (nm), Zeta potential and viability

@@ -1,7 +1,7 @@
 import joblib
 trained_model = joblib.load('ML_models/Trained_model.joblib')
 
-#one = [27.0, 15.0, 1.0, 0.48936170212765956, 0.024990249902499023, 0.04738641914997557, 0.4744922059518186, 0.5390397260038178]
+#one = [68.0, 35.0, 12.0, 0.0, 0.0008733333333333333, 0.18701505094886414, 0.49173358526216343, 0.307869979038986]
 
 def evolved_compound(cross_individual):
     normal_cell = [cross_individual[index] for index in [0, 2, 3, 4, 5, 6 ]]

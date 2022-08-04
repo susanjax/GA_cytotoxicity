@@ -14,4 +14,7 @@ def Decoder():
     return encoder_function
 
 #print(Scaler())
-#print(Decoder())
+print(Decoder())
+
+#def reverse_scaler():
+

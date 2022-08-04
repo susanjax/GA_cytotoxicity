@@ -19,9 +19,9 @@ def new_generations(Gen):
     new_gen = crossing_and_mutation.evolution(sort_result)
     return new_gen
 
-first_gen = first_generation()
-second_gen = second_generation(first_gen)
-next_gen = new_generations(second_gen)
+#first_gen = first_generation()
+#second_gen = second_generation(first_gen)
+#next_gen = new_generations(second_gen)
 #print(first, second, new_generations(second))
 #print(new_generations(Generation2))
 

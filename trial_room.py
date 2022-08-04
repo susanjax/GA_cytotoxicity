@@ -7,10 +7,13 @@ generation_number = 50
 
 #input
 population_size = 50
-cross_over = 0.4
+#cross_over = 0.4
+
+import warnings
+warnings.filterwarnings("ignore")
 
 
-def final():
+def Genetic_Algorithm():
     Generation1 = prediction.Viability_prediction()
     Generation2 = crossing_and_mutation.evolution(Generation1)
     Generation_next = generations.new_generations(Generation2)
@@ -24,4 +27,6 @@ def final():
         a += 1
     return Generation_next
 
-print("Final result:", final())
+print("Final result:", Genetic_Algorithm())
+data_output = Genetic_Algorithm()
+data_output.to_csv('data_out.csv')

@@ -5,15 +5,15 @@ import numpy as np
 from sklearn.preprocessing import  MinMaxScaler
 from category_encoders import OrdinalEncoder
 
-population_size = 100
+population_size = 50
 db = pd.read_csv('Database/Cytotoxicity.csv')
-cell_type = db['Cell type']
-test = db['test']
-material = db['material']
-time = db['time (hr)']
-concentration = db['concentration (ug/ml)']
-hd = db['Hydrodynamic diameter (nm)']
-zeta = db['Zeta potential (mV)']
+cell_type = db['Cell type'].unique()
+test = db['test'].unique()
+material = db['material'].unique()
+time = db['time (hr)'].unique()
+concentration = db['concentration (ug/ml)'].unique()
+hd = db['Hydrodynamic diameter (nm)'].unique()
+zeta = db['Zeta potential (mV)'].unique()
 
 class Single:
     def __init__(self):
